@@ -1,13 +1,11 @@
-// script.js
 
-// Dark Mode Toggle
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.getElementById('themeIcon');
 
 themeToggle.addEventListener('click', () => {
   document.body.classList.toggle('dark');
 
-  // Toggle icon between sun and moon
+
   if (document.body.classList.contains('dark')) {
     themeIcon.innerHTML = `
       <!-- Moon Icon -->
@@ -21,7 +19,6 @@ themeToggle.addEventListener('click', () => {
   }
 });
 
-// Real-Time Validation for Date Picker
 const birthdateInput = document.getElementById('birthdate');
 const dateError = document.getElementById('dateError');
 
@@ -45,7 +42,6 @@ birthdateInput.addEventListener('input', () => {
   }
 });
 
-// Form Submission
 document.getElementById('ageForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -61,7 +57,6 @@ document.getElementById('ageForm').addEventListener('submit', function(e) {
   const birthDate = new Date(birthdateValue);
   const today = new Date();
 
-  // Validate the birth date
   if (birthDate > today) {
     dateError.textContent = 'Date of birth cannot be in the future.';
     dateError.classList.remove('hidden');
@@ -70,7 +65,6 @@ document.getElementById('ageForm').addEventListener('submit', function(e) {
     dateError.classList.add('hidden');
   }
 
-  // Calculate Age
   let ageYears = today.getFullYear() - birthDate.getFullYear();
   let ageMonths = today.getMonth() - birthDate.getMonth();
   let ageDays = today.getDate() - birthDate.getDate();
@@ -86,7 +80,6 @@ document.getElementById('ageForm').addEventListener('submit', function(e) {
     ageMonths += 12;
   }
 
-  // Display Age
   const ageDisplay = document.getElementById('ageDisplay');
   ageDisplay.innerHTML = `
     <span class="font-bold">${ageYears}</span> years,
@@ -94,13 +87,11 @@ document.getElementById('ageForm').addEventListener('submit', function(e) {
     <span class="font-bold">${ageDays}</span> days
   `;
 
-  // Animate and Show Age Result
   const resultDiv = document.getElementById('result');
   resultDiv.classList.remove('hidden', 'opacity-0');
   void resultDiv.offsetWidth; // Trigger reflow
   resultDiv.classList.add('opacity-100');
 
-  // Calculate Next Birthday
   const birthdayDisplay = document.getElementById('birthdayDisplay');
   const nextBirthdayDiv = document.getElementById('nextBirthday');
 
@@ -117,12 +108,10 @@ document.getElementById('ageForm').addEventListener('submit', function(e) {
     <span class="font-bold">${diffDays}</span> days
   `;
 
-  // Animate and Show Next Birthday
   nextBirthdayDiv.classList.remove('hidden', 'opacity-0');
   void nextBirthdayDiv.offsetWidth; // Trigger reflow
   nextBirthdayDiv.classList.add('opacity-100');
 
-  // Calculate Total Days Lived
   const daysDisplay = document.getElementById('daysDisplay');
   const totalDaysDiv = document.getElementById('totalDays');
 
@@ -133,13 +122,11 @@ document.getElementById('ageForm').addEventListener('submit', function(e) {
     <span class="font-bold">${diffTotalDays}</span> days
   `;
 
-  // Animate and Show Total Days Lived
   totalDaysDiv.classList.remove('hidden', 'opacity-0');
   void totalDaysDiv.offsetWidth; // Trigger reflow
   totalDaysDiv.classList.add('opacity-100');
 });
 
-// Reset Functionality
 const resetButton = document.getElementById('resetButton');
 
 resetButton.addEventListener('click', () => {
@@ -148,24 +135,20 @@ resetButton.addEventListener('click', () => {
   document.getElementById('nextBirthday').classList.add('hidden', 'opacity-0');
   document.getElementById('totalDays').classList.add('hidden', 'opacity-0');
 
-  // Hide error messages
   document.getElementById('dateError').classList.add('hidden');
 });
 
-// Check for saved theme on load
 window.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
       document.body.classList.add('dark');
-      // Update icon to moon
+
       themeIcon.innerHTML = `
         <!-- Moon Icon -->
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
       `;
     }
   });
-  
-  // Update theme toggle to save preference
   themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark');
   
